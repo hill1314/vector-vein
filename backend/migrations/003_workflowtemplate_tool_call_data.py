@@ -39,6 +39,7 @@ with suppress(ImportError):
 def migrate(migrator: Migrator, database: pw.Database, *, fake=False):
     """Write your migrations here."""
 
+    # 添加字段
     migrator.add_fields("workflowtemplate", tool_call_data=pw.TextField(default="{}"))
 
 

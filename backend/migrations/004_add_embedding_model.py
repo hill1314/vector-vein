@@ -39,6 +39,7 @@ with suppress(ImportError):
 def migrate(migrator: Migrator, database: pw.Database, *, fake=False):
     """Write your migrations here."""
 
+    # 添加字段
     migrator.add_fields("user_vector_database", embedding_provider=pw.CharField(default="openai", max_length=255))
 
 

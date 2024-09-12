@@ -29,6 +29,7 @@ from .agent_models import Conversation, Message, Agent
 
 
 def create_tables():
+    # 初始化 创建用到的表
     database.create_tables(
         [
             User,

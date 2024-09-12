@@ -15,6 +15,7 @@ from peewee import (
 from models.base import BaseModel, JSONField
 
 
+# 用户类
 class User(BaseModel):
     """用户"""
 
@@ -26,6 +27,7 @@ class User(BaseModel):
         return self.uid.hex
 
 
+# 配置类
 class Setting(BaseModel):
     """设置"""
 

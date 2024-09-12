@@ -13,6 +13,7 @@ from utilities.general import mprint
 from utilities.config import config, cache
 
 
+# 后台任务服务
 class BackgroundTaskServer:
     def __init__(self, cache_dir: str | Path | None = None, num_workers: int = 2):
         if cache_dir is None:

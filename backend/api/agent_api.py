@@ -22,6 +22,7 @@ from utilities.file_processing import static_file_server
 from utilities.media_processing import SpeechRecognitionClient
 
 
+# 会话API
 class ConversationAPI:
     name = "conversation"
 

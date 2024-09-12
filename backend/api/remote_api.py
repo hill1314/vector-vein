@@ -14,8 +14,10 @@ from .utils import JResponse
 headers = {"user-agent": "vector-vein client"}
 
 
+# 远程调用
 def request(method: str, path: str, payload=None):
     settings = Settings()
+    # vectorvein.ai
     url = f"https://{settings.website_domain}{path}"
     try_times = 0
     while try_times < 3:
@@ -36,6 +38,7 @@ def request(method: str, path: str, payload=None):
     return JResponse(status=500, msg="request failed")
 
 
+# 官方网站API
 class OfficialSiteAPI:
     name = "official_site"
 

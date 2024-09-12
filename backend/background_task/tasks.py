@@ -31,6 +31,7 @@ tasks_queue = Deque(directory=Path(config.data_path) / "cache" / "background_tas
 qdrant_tasks_queue = Deque(directory=Path(config.data_path) / "cache" / "qdrant_task")
 
 
+# 后台任务
 def background_task(func):
     tasks_registry[func.__name__] = func
 
@@ -56,6 +57,7 @@ def is_qdrant_task(task_name):
     return task_name.startswith("q_")
 
 
+# 更新工作流工具调用数据
 @background_task
 def update_workflow_tool_call_data(
     workflow_wid: str | None = None,
@@ -75,6 +77,7 @@ def update_workflow_tool_call_data(
     tool_call_data.save()
 
 
+# 总结对话标题
 @background_task
 def summarize_conversation_title(
     message_id: str,
@@ -87,6 +90,7 @@ def summarize_conversation_title(
     cache.set(f"conversation-title:{message_id}", conversation_title, expire=60 * 60)
 
 
+# 创建集合
 @background_task
 def q_create_collection(client: QdrantClient, vid: str, size: int = 768):
     try:
@@ -101,6 +105,7 @@ def q_create_collection(client: QdrantClient, vid: str, size: int = 768):
         return False
 
 
+# 删除集合
 @background_task
 def q_delete_collection(client: QdrantClient, vid: str):
     try:

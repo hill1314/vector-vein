@@ -18,6 +18,7 @@ from models.base import BaseModel, JSONField
 from models.user_models import User
 
 
+# 数据库状态
 class DatabaseStatus:
     INVALID = "INVALID"
     EXPIRED = "EXPIRED"
@@ -28,6 +29,7 @@ class DatabaseStatus:
     CREATING = "CREATING"
 
 
+# 向量数据库 表结构
 class UserVectorDatabase(BaseModel):
     vid = UUIDField(default=uuid.uuid4, unique=True)
     user = ForeignKeyField(User, null=True, on_delete="SET NULL")
@@ -58,6 +60,7 @@ class UserVectorDatabase(BaseModel):
         table_name = "user_vector_database"
 
 
+# 用户对象
 class UserObject(BaseModel):
     oid = UUIDField(default=uuid.uuid4, unique=True)
     user = ForeignKeyField(User, null=True, on_delete="SET NULL")
@@ -94,6 +97,7 @@ class UserObject(BaseModel):
         table_name = "user_object"
 
 
+# 用户关联数据库
 class UserRelationalDatabase(BaseModel):
     rid = UUIDField(primary_key=True, default=uuid.uuid4)
     user = ForeignKeyField(User, null=True, on_delete="SET NULL")
@@ -134,6 +138,7 @@ class Status:
     EXPIRED = "EX"
 
 
+# 用户关联表
 class UserRelationalTable(BaseModel):
     tid = UUIDField(primary_key=True, default=uuid.uuid4)
     database = ForeignKeyField(UserRelationalDatabase, on_delete="CASCADE")

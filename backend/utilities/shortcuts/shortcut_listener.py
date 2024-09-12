@@ -59,6 +59,7 @@ def is_combination_key(current_keys):
     return (has_modifier and has_alphanumeric) or has_special
 
 
+# 快捷键监听
 class ShortcutsListener:
     def __init__(self):
         self.monitored_hotkeys = {}

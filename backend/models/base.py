@@ -19,9 +19,11 @@ from peewee import (
 from utilities.config import config
 
 
+# 创建一个连接到SQLite数据库的实例, # 如果文件不存在，它会被创建
 database = SqliteDatabase(Path(config.data_path) / "my_database.db")
 
 
+# 在 SQLite 中将 JSON 数据存储为文本的自定义字段
 class JSONField(TextField):
     """Custom field to store JSON data as text in SQLite"""
 
@@ -36,6 +38,7 @@ class JSONField(TextField):
         return None
 
 
+# 定义一个模型，该模型对应数据库中的一个表
 class BaseModel(Model):
     class Meta:
         database = database
@@ -74,6 +77,7 @@ def model_serializer(obj, many: bool = False, manytomany: bool = False, fields: 
         return json.loads(serialized_obj)
 
 
+# 迁移
 def run_migrations(fake: bool = False):
     router = Router(database, migrate_dir="./migrations")
     router.run(fake=fake)

@@ -34,6 +34,7 @@ with suppress(ImportError):
     import playhouse.postgres_ext as pw_pext
 
 
+# 定义数据迁移逻辑(基础数据)
 def migrate(migrator: Migrator, database: pw.Database, *, fake=False):
     """Write your migrations here."""
     

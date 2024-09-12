@@ -2,7 +2,7 @@
 # @Date:   2024-04-29 16:50:17
 from collections.abc import Mapping
 
-
+# 默认设置
 DEFAULT_SETTINGS = {
     "initial_setup": False,
     "openai_api_type": "open_ai",

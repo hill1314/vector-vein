@@ -13,18 +13,21 @@ from models import UserRelationalDatabase, UserRelationalTable, Status
 from utilities.general import mprint
 
 
+# 关系型数据库，SQL语句
+# 获取表名
 def get_table_names(conn: sqlite3.Connection):
     cursor = conn.execute("SELECT name FROM sqlite_master WHERE type='table';")
     tables = [row[0] for row in cursor.fetchall()]
     return tables
 
-
+# 获取表数据量
 def get_row_count_by_table(conn: sqlite3.Connection, table_name: str) -> int:
     cursor = conn.execute(f'SELECT COUNT(*) FROM "{table_name}"')
     count = cursor.fetchone()[0]
     return count
 
 
+# 获取文件的 表结构
 def get_schema_from_table(file_path: str | Path, is_excel: bool):
     if is_excel:
         df = pd.read_excel(file_path)
@@ -130,6 +133,7 @@ def generate_create_table_sql(table_name, columns_info):
     return create_table_sql
 
 
+# 通过Excel 或 cvs 文件创建表
 def create_from_table(
     file_path: str | Path,
     table_name: str,
@@ -165,6 +169,7 @@ def create_from_table(
     conn.close()
 
 
+# 通过SQL 创建表
 def create_from_sql(
     db_path: str,
     sql_statement: str,
@@ -180,6 +185,7 @@ def create_from_sql(
     conn.close()
 
 
+# 通过文件创建表（sql文件、Excel表格等）
 def create_relational_database_table(
     table: UserRelationalTable,
     add_method: str,

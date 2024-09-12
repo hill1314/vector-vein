@@ -16,6 +16,7 @@ from models import (
 from utilities.config import config
 
 
+# 获取用户对象属性
 def get_user_object_general(ObjectClass, **kwargs):
     if len(kwargs) == 0:
         return 500, "wrong args", {}
@@ -26,6 +27,7 @@ def get_user_object_general(ObjectClass, **kwargs):
     return 200, "", object
 
 
+# 获取历史消息
 def get_history_messages(
     start_message: Message,
     count: int | None = 10,
@@ -103,6 +105,7 @@ def get_history_messages(
     return history
 
 
+# 执行工作流
 def run_workflow_common(
     workflow_data: dict,
     workflow: Workflow,

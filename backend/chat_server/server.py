@@ -17,6 +17,7 @@ from background_task.tasks import summarize_conversation_title
 from .utils import get_tool_call_data, get_tool_related_workflow, check_multimodal_available
 
 
+# 聊天服务，端口：8765
 class WebSocketServer:
     def __init__(self, host="localhost", start_port=8765):
         self.host = host
@@ -47,9 +48,12 @@ class WebSocketServer:
         async for message in websocket:
             await self.process_message(websocket, conversation_id, message)
 
+    # 处理消息
     async def process_message(self, websocket, conversation_id, message):
+        # 配置信息
         user_settings = Settings()
 
+        # 请求数据
         request_data = json.loads(message)
         settings = request_data["conversation"]["settings"]
         ai_message_mid = request_data["ai_message_mid"]
@@ -74,8 +78,10 @@ class WebSocketServer:
             title_backend, title_model = user_settings.get("agent.auto_title_model", ["OpenAI", "gpt-35-turbo"])
             summarize_conversation_title.delay(ai_message_mid, history_messages, title_backend, title_model)
 
+        # 创建异步聊天客户端
         client = create_async_chat_client(backend=backend, model=model)
 
+        # 解析 工具请求参数
         tool_call_data = request_data["conversation"]["tool_call_data"]
         if tool_call_data.get("workflows") or tool_call_data.get("templates"):
             tools_params = {"tools": get_tool_call_data(tool_call_data, simple=False)}
@@ -83,8 +89,11 @@ class WebSocketServer:
             tools_params = {}
 
         mprint("Agent chat tools_params", tools_params)
+
+        # 响应结果
         response = await client.create_completion(messages=messages, **tools_params)
         mprint("Agent chat response created")
+
         full_content = ""
         tool_calls = {}
         selected_workflow = {}
@@ -151,10 +160,12 @@ class WebSocketServer:
 
         conversation_title = cache.get(f"conversation-title:{ai_message_mid}", None)
 
+        # 是否需要 语音回答
         if settings.get("agent_audio_reply") and len(full_content) > 0:
             provider, voice = settings.get("agent_audio_voice", ["openai", "onyx"])
             tts_server.stream(text=full_content, provider=provider, voice=voice, skip_code_block=True)
 
+        # 构建返回数据
         response_data = {
             "conversation_title": conversation_title,
             "content_type": "TXT" if len(tool_calls) == 0 else "WKF",

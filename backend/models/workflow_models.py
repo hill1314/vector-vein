@@ -21,6 +21,7 @@ from models.base import BaseModel, JSONField
 from models.user_models import User
 
 
+# 工作流标签
 class WorkflowTag(BaseModel):
     """工作流标签"""
 
@@ -44,6 +45,7 @@ class WorkflowTag(BaseModel):
         return f"{self.title}|{self.tid.hex}"
 
 
+# 工作流
 class Workflow(BaseModel):
     """用户工作流"""
 
@@ -76,6 +78,7 @@ class Workflow(BaseModel):
         return self.wid.hex
 
 
+# 工作流运行记录
 class WorkflowRunRecord(BaseModel):
     """用户工作流运行记录"""
 
@@ -110,6 +113,7 @@ class WorkflowRunRecord(BaseModel):
         return self.rid.hex
 
 
+# 用户工作流运行调度
 class WorkflowRunSchedule(BaseModel):
     """用户工作流运行调度"""
 
@@ -132,6 +136,7 @@ class WorkflowRunSchedule(BaseModel):
         return self.sid.hex
 
 
+# 用户工作流模板
 class WorkflowTemplate(BaseModel):
     """用户工作流模板"""
 

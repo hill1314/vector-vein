@@ -24,6 +24,7 @@ from background_task.tasks import (
 )
 
 
+# 数据库API
 class DatabaseAPI:
     name = "database"
 
@@ -80,6 +81,7 @@ class DatabaseAPI:
         return JResponse()
 
 
+# 数据库对象API
 class DatabaseObjectAPI:
     name = "database_object"
 

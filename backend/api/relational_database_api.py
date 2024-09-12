@@ -23,6 +23,7 @@ from utilities.database import (
 from utilities.general import mprint
 
 
+# 关系型数据库API
 class RelationalDatabaseAPI:
     name = "relational_database"
 
@@ -106,6 +107,7 @@ class RelationalDatabaseAPI:
         )
 
 
+# 关系型数据库表 API
 class RelationalDatabaseTableAPI:
     name = "relational_database_table"
 
@@ -265,6 +267,7 @@ class RelationalDatabaseTableAPI:
                 return dict(status=500, msg="Failed to get table schema")
 
 
+# 关系型数据库 表记录 API
 class RelationalDatabaseTableRecordAPI:
     name = "relational_database_table_record"
 

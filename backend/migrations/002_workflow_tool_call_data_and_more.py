@@ -39,6 +39,7 @@ with suppress(ImportError):
 def migrate(migrator: Migrator, database: pw.Database, *, fake=False):
     """Write your migrations here."""
 
+    # 添加索引
     migrator.add_index("agent", "aid", unique=True)
 
     migrator.add_index("conversation", "cid", unique=True)

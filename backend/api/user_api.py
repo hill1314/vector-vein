@@ -17,6 +17,7 @@ from utilities.media_processing import get_screenshot
 from utilities.config import config, Settings, cache, DEFAULT_SETTINGS
 
 
+# 开启聊天
 def start_chat(agent_id: str, continue_chat: bool = False, with_screenshot: bool = False):
     if continue_chat:
         agent = Agent.select().where(Agent.aid == agent_id).first()
@@ -64,6 +65,7 @@ def start_chat(agent_id: str, continue_chat: bool = False, with_screenshot: bool
         cache.set("has_start_recording", True, expire=600)
 
 
+# 注册快捷键
 def register_shortcuts(shortcuts: dict | None = None):
     """Register shortcuts and restart shortcuts_listener.
 
@@ -104,6 +106,7 @@ def register_shortcuts(shortcuts: dict | None = None):
     shortcuts_listener.restart()
 
 
+# 设置API
 class SettingAPI:
     name = "setting"
 
@@ -153,16 +156,18 @@ class SettingAPI:
         port = cache.get(port_name)
         return JResponse(data={"port": port})
 
-
+# 硬件API
 class HardwareAPI:
     name = "hardware"
 
+    # 麦克风列表
     def list_microphones(self, payload):
         mic = Microphone()
         microphones = mic.list_devices()
         mic.close()
         return JResponse(data=microphones)
 
+    # 检查 麦克风
     def check_microphone(self, payload):
         if not self.mic.is_recording:
             cache.delete("has_start_recording")
@@ -187,6 +192,7 @@ class HardwareAPI:
             return JResponse(status=500, msg=str(e))
 
 
+# 快捷键API
 class ShortcutAPI:
     name = "shortcut"
 

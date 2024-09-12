@@ -18,8 +18,9 @@ class TTSServer:
         if self.thread is not None:
             mprint("TTSServer is already running")
             return
-
+        # 创建线程
         self.thread = Thread(target=self.run, daemon=True)
+        # 启动线程
         self.thread.start()
 
     def run(self):
@@ -30,6 +31,7 @@ class TTSServer:
     def stop(self):
         if self.tts_client is not None and self.playing:
             mprint("Stopping current TTS playback")
+            # 停止线程
             self.tts_client.stop()
             self.playing = False
             self.tts_client = None

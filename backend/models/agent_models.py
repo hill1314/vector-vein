@@ -19,6 +19,7 @@ from models.user_models import User
 from models.workflow_models import Workflow, WorkflowTemplate
 
 
+# 代理Agent
 class Agent(BaseModel):
     aid = UUIDField(primary_key=True, default=uuid.uuid4, unique=True)
     name = CharField(max_length=512)

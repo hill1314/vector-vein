@@ -36,6 +36,7 @@ def copy_images(images):
     return copied_images
 
 
+# 工作流API
 class WorkflowAPI:
     name = "workflow"
 

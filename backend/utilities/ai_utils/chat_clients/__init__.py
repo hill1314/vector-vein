@@ -66,6 +66,7 @@ BackendMap = {
 }
 
 
+# 创建聊天客户端
 def create_chat_client(
     backend: BackendType,
     model: str | None = None,
@@ -96,6 +97,7 @@ def create_chat_client(
     )
 
 
+# 异步创建聊天客户端
 def create_async_chat_client(
     backend: BackendType,
     model: str | None = None,

@@ -21,6 +21,7 @@ def empty(
     return workflow.data
 
 
+# 条件
 @task
 @timer
 def conditional(
@@ -76,6 +77,7 @@ def conditional(
     return workflow.data
 
 
+# 随机
 @task
 @timer
 def random_choice(
@@ -94,6 +96,7 @@ def random_choice(
     return workflow.data
 
 
+# json格式化
 @task
 @timer
 def json_process(

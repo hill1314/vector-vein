@@ -14,6 +14,7 @@ from utilities.text_processing import split_text
 from worker.tasks import task, timer
 
 
+# 模板撰写
 @task
 @timer
 def template_compose(
@@ -100,6 +101,7 @@ def template_compose(
     return workflow.data
 
 
+# Markdown to HTML
 @task
 @timer
 def markdown_to_html(
@@ -124,6 +126,7 @@ def markdown_to_html(
     return workflow.data
 
 
+# 文本分割
 @task
 @timer
 def text_splitters(
@@ -183,6 +186,7 @@ def text_in_out(
     return workflow.data
 
 
+# 文本截断
 @task
 @timer
 def text_truncation(

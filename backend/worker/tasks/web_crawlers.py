@@ -48,6 +48,7 @@ def get_aid_cid(bvid, part_number):
     return aid, cid
 
 
+# 文本爬虫
 @task
 @timer
 def text_crawler(
@@ -87,6 +88,7 @@ def text_crawler(
     return workflow.data
 
 
+# B站爬虫
 @task
 @timer
 def bilibili_crawler(
@@ -170,6 +172,7 @@ def bilibili_crawler(
     return workflow.data
 
 
+# YouTube爬虫
 @task
 @timer
 def youtube_crawler(

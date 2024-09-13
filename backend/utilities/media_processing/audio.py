@@ -22,6 +22,7 @@ from utilities.general import mprint
 from utilities.config import Settings, config
 
 
+# 音频处理
 class TTSClient:
     def __init__(self, provider: str = "openai", model: str | None = None):
         self.audio_sample_rate = 24_000

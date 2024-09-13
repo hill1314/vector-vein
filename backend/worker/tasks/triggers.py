@@ -7,6 +7,7 @@ from utilities.workflow import Workflow
 from worker.tasks import task
 
 
+# 按钮触发
 @task
 def button_trigger(
     workflow_data: dict,

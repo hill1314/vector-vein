@@ -65,6 +65,7 @@ def decrypt_aes_ecb_base64(ciphertext_base64, key):
     return unpad(cipher.decrypt(ciphertext), AES.block_size).decode("utf-8")
 
 
+# 自定义Markdown转换器
 class CustomMarkdownConverter(MarkdownConverter):
     def convert_b(self, el, text, convert_as_inline):
         return self.custom_bold_conversion(el, text, convert_as_inline)
@@ -90,6 +91,7 @@ def clean_markdown(text: str):
     return content
 
 
+# TODO 从 url 抓取文本
 def crawl_text_from_url(url: str):
     if not url.startswith("http"):
         url = f"http://{url}"

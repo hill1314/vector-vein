@@ -16,6 +16,7 @@ from utilities.config import config
 from utilities.general import mprint
 
 
+# 静态文件服务器
 class StaticFileServer:
     host = "localhost"
     port = 13286

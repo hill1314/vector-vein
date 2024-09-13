@@ -57,6 +57,7 @@ def is_url(url):
     return all([parts.scheme, parts.netloc, parts.path])
 
 
+# 获取图片
 def fetch_image(url):
     """
     Attempts to fetch an image from a url.
@@ -171,7 +172,7 @@ styles = {
     "LIST_NUMBER": "List Number",
 }
 
-
+# html转 doc
 class HtmlToDocx(HTMLParser):
     def __init__(self):
         super().__init__()

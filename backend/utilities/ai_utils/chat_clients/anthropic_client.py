@@ -55,6 +55,7 @@ def refactor_tool_calls(tool_calls: list):
     ]
 
 
+# 格式化聊天消息
 def format_messages_alternate(messages: list) -> list:
     # messages: roles must alternate between "user" and "assistant", and not multiple "user" roles in a row
     # reformat multiple "user" roles in a row into {"role": "user", "content": [{"type": "text", "text": "Hello, Claude"}, {"type": "text", "text": "How are you?"}]}
@@ -134,6 +135,7 @@ class AnthropicChatClient(BaseChatClient):
             system_prompt = ""
 
         if self.context_length_control == "latest":
+            # 超过最大长度时，进行消息截断
             messages = cutoff_messages(messages, max_count=MODEL_MAX_INPUT_LENGTH[self.model], model=self.model)
 
         messages = format_messages_alternate(messages)

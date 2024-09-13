@@ -3,6 +3,7 @@
 # @Date:   2023-12-12 15:22:52
 # @Last Modified by:   Bi Ying
 # @Last Modified time: 2024-06-11 16:24:14
+# 基础聊天客户端
 class BaseChatClient:
     DEFAULT_MODEL: str | None = None
 
@@ -32,6 +33,7 @@ class BaseChatClient:
         raise NotImplementedError("Subclasses should implement this method")
 
 
+# 基础异步聊天客户端
 class BaseAsyncChatClient:
     def __init__(
         self,

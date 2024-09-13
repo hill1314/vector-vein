@@ -64,6 +64,7 @@ def get_token_counts(text: str, model: str = "gpt-3.5-turbo") -> int:
         return len(chatgpt_encoding.encode(text))
 
 
+# 截断消息
 def cutoff_messages(
     messages: list,
     max_count: int = 16000,
@@ -108,6 +109,7 @@ def cutoff_messages(
     else:
         system_message = []
 
+    # 反转消息列表
     for index, message in enumerate(reversed(messages)):
         if not message[content_key]:
             continue
@@ -147,8 +149,10 @@ def cutoff_messages(
     return system_message + messages
 
 
+# 格式化图片消息
 def format_image_message(image: str, backend: str = "openai") -> dict:
     image_processor = ImageProcessor(image_source=image)
+    # 适配不同的模型
     if backend == "openai":
         return {
             "type": "image_url",
@@ -177,6 +181,7 @@ def format_image_message(image: str, backend: str = "openai") -> dict:
         }
 
 
+# 格式化消息
 def format_messages(messages: list, backend: str = "openai", native_multimodal: bool = False) -> list:
     """将 VectorVein 的 Message 序列化后的格式转换为不同模型支持的格式
 
@@ -358,10 +363,12 @@ def format_messages(messages: list, backend: str = "openai", native_multimodal: 
     return formatted_messages
 
 
+# 生成工具使用系统提示
 def generate_tool_use_system_prompt(tools: list, format_type: str = "json") -> str:
     if format_type == "json":
         return (
-            "You have access to the following tools. Use them if required and wait for the tool call result. Stop output after calling a tool.\n\n"
+            "You have access to the following tools. Use them if required and wait for the tool call result. "
+            "Stop output after calling a tool.\n\n"
             f"# Tools\n{tools}\n\n"
             "# Requirements when using tools\n"
             "Must starts with <|▶|> and ends with <|◀|>\n"
@@ -371,7 +378,8 @@ def generate_tool_use_system_prompt(tools: list, format_type: str = "json") -> s
         )
     elif format_type == "xml":
         return (
-            "You have access to the following tools. Use them if required and wait for the tool call result. Stop output after calling a tool.\n\n"
+            "You have access to the following tools. Use them if required and wait for the tool call result. "
+            "Stop output after calling a tool.\n\n"
             f"# Tools\n{tools}\n\n"
             "# Requirements when using tools\n"
             "Must starts with <|▶|> and ends with <|◀|>\n"
@@ -381,6 +389,7 @@ def generate_tool_use_system_prompt(tools: list, format_type: str = "json") -> s
         )
 
 
+# 调用提取工具
 def extract_tool_calls(content: str) -> dict:
     if "<|▶|>" not in content or "<|◀|>" not in content:
         return {}

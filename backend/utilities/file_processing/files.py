@@ -38,11 +38,13 @@ email_pattern = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b
 markdown_image_pattern = re.compile(r"!\[.*\]\(.*\)")
 
 
+# 去掉URL和邮箱地址
 def remove_url_and_email(text: str):
     text = url_pattern.sub("", text)
     return email_pattern.sub("", text)
 
 
+# 去掉markdown 图片
 def remove_markdown_image(text: str, max_length: int = 300):
     def replace_func(match):
         if len(match.group(0)) > max_length:
@@ -53,6 +55,7 @@ def remove_markdown_image(text: str, max_length: int = 300):
     return markdown_image_pattern.sub(replace_func, text)
 
 
+# 加载json文件
 def try_load_json_file(file_path: str, default=dict):
     if Path(file_path).exists():
         try:
@@ -63,6 +66,7 @@ def try_load_json_file(file_path: str, default=dict):
     return default()
 
 
+# 重命名
 def rename_path(path: str | Path):
     path = Path(path)
 
@@ -136,6 +140,7 @@ def read_zip_contents(zip_file_path: str | Path, extract_path: str | Path = "/tm
     return "\n".join(contents)
 
 
+# 读取文件内容（多种文件格式）
 def read_file_content(local_file: str | Path, read_zip: bool = False):
     filename = Path(local_file).name
     if filename.endswith(".docx"):
@@ -195,6 +200,7 @@ def read_file_content(local_file: str | Path, read_zip: bool = False):
             return txt_contents
 
 
+# 多文件读取
 def get_files_contents(files: list):
     results = []
     for file in files:
@@ -203,6 +209,7 @@ def get_files_contents(files: list):
     return results
 
 
+# 复制文件
 def copy_file(src, dst):
     if Path(src).exists():
         Path(dst).parent.mkdir(parents=True, exist_ok=True)

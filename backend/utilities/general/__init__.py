@@ -5,6 +5,7 @@ from .ratelimit import add_request_record, clear_expired_records, is_request_all
 from .retry import Retry
 
 
+# 对齐元素
 def align_elements(input_data):
     """
     将输入的列表或元组中的每个元素拉齐到同样的长度。

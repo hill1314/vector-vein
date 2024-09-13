@@ -47,6 +47,7 @@ def convert_parameter_value(value, parameter_type):
     return value  # if none of the types match
 
 
+# 程序代码
 @task
 @timer
 def programming_function(
@@ -167,6 +168,7 @@ def programming_function(
     return workflow.data
 
 
+# 图片搜索
 @task
 @timer
 def image_search(
@@ -253,6 +255,7 @@ def image_search(
     return workflow.data
 
 
+# 截屏
 @task
 @timer
 def screenshot(
@@ -269,6 +272,7 @@ def screenshot(
     return workflow.data
 
 
+# 文本搜索
 @task
 @timer
 def text_search(

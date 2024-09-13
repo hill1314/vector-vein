@@ -48,6 +48,7 @@ class ToolCallData:
         self.field_translations[field] = translated_field
         return translated_field
 
+    # 更新标题
     def update_title(self, force: bool = False):
         if self.tool_call_data.get("name") and not force:
             return
@@ -63,6 +64,7 @@ class ToolCallData:
             title = workflow_title
         self.tool_call_data["name"] = title
 
+    # 更新参数
     def update_parameters(self):
         parameters = {}
         parameter_sources = {}

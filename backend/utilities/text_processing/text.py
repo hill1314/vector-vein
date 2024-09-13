@@ -22,6 +22,7 @@ markdown_image_url_pattern = re.compile(r"!\[.*?\]\((.*?)\)")
 local_image_re = re.compile(r"http://localhost:\d+/images/(.*)")
 
 
+# 去掉URL和邮箱地址
 def remove_url_and_email(text: str):
     text = url_pattern.sub("", text)
     return email_pattern.sub("", text)
@@ -53,6 +54,7 @@ def replace_local_image_url(url: str):
         return url
 
 
+# 提取图片网址
 def extract_image_url(text: str):
     # 如果已经是正常的图片链接，则直接返回
     if url_pattern.match(text):
@@ -67,6 +69,7 @@ def extract_image_url(text: str):
             return replace_local_image_url(text)
 
 
+# 拆分文本
 def split_text(text: str, rules: dict, flat: bool = False):
     split_method = rules.get("split_method", "general")
     chunk_length = rules.get("chunk_length", 1000)

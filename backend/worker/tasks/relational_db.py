@@ -19,6 +19,7 @@ from utilities.ai_utils.chat_clients import create_chat_client
 sql_block_pattern = re.compile(r"```.*?\n(?P<code>.*?)\n```", re.DOTALL)
 
 
+# 生成建表sql
 def generate_create_table_sql(table_name, columns):
     base_sql = f"CREATE TABLE {table_name} ("
     column_definitions = []
@@ -42,6 +43,7 @@ def get_sample_data_sql(table_name: str):
     return f"SELECT * FROM {table_name} LIMIT 1;"
 
 
+# 格式化 单元格
 def format_cell(cell_content) -> str:
     if cell_content is None:
         return ""
@@ -50,6 +52,7 @@ def format_cell(cell_content) -> str:
     return cell_content
 
 
+# 格式化输出
 def format_output(records: list, output_type: str = "markdown"):
     if not isinstance(records, list):
         return ""
@@ -87,6 +90,7 @@ def format_output(records: list, output_type: str = "markdown"):
             return output.getvalue()
 
 
+# 获取表信息
 @task
 @timer
 def get_table_info(

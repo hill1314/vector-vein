@@ -26,6 +26,7 @@ MODEL_MAX_INPUT_LENGTH = {
 }
 
 
+# 深度搜索聊天客户端
 class DeepSeekChatClient(BaseChatClient):
     DEFAULT_MODEL: str = "deepseek-chat"
 

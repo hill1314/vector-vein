@@ -112,6 +112,7 @@ class Node:
         return f"<Node {self.type} @{self.id}>"
 
 
+# 工作流
 class Workflow:
     def __init__(self, workflow_data: dict):
         self.workflow_data = workflow_data
@@ -337,6 +338,7 @@ class Workflow:
     def get_node(self, node_id: str) -> Node:
         return self.nodes.get(node_id)
 
+    # 获取节点的实际输入值
     def get_node_field_value(self, node_id: str, field: str, default: str = None):
         """
         如果节点有连接的边，则以边的另一端节点作为输入值，忽略节点自身的value。

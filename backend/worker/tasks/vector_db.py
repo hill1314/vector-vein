@@ -19,6 +19,7 @@ from background_task.tasks import (
 from models import UserObject, UserVectorDatabase
 
 
+# 添加数据
 @task
 @timer
 def add_data(
@@ -135,6 +136,7 @@ def add_data(
     return workflow.data
 
 
+# 删除数据
 @task
 @timer
 def delete_data(

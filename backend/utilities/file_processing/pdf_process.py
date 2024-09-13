@@ -5,6 +5,7 @@ from pathlib import Path
 import fitz
 
 
+# 计算缩放
 def calculate_zoom(page, min_dimension=1920):
     bbox = page.rect
     width, height = bbox.width, bbox.height
@@ -12,6 +13,7 @@ def calculate_zoom(page, min_dimension=1920):
     return zoom_x, zoom_y
 
 
+# pdf 转图片
 def pdf_to_images(pdf_path, output_folder):
     if not Path(output_folder).exists():
         Path(output_folder).mkdir(parents=True, exist_ok=True)

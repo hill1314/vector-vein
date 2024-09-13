@@ -10,6 +10,7 @@ from utilities.general import mprint
 from utilities.workflow import Workflow
 
 
+# 任务 装饰器
 class Task:
     def __init__(self, func):
         self.func = func
@@ -18,6 +19,7 @@ class Task:
         return self.func(*args, **kwargs)
 
     def s(self, *args, **kwargs):
+        # （返回函数信息）
         return (self, args, kwargs)
 
 
@@ -31,6 +33,7 @@ class Chain:
 
     def __call__(self, initial_data):
         result = initial_data
+        # 遍历执行task任务，异常时 设置异常信息
         for task, args, kwargs in self.tasks:
             try:
                 result = task(result, *args, **kwargs)
@@ -61,6 +64,7 @@ def on_error(*args, **kwargs):
     return True
 
 
+# 测量函数运行时间的装饰器
 def timer(func):
     @wraps(func)
     def wrapper(*args, **kwargs):

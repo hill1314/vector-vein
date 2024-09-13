@@ -16,6 +16,7 @@ from PIL import Image, ImageDraw, ImageFont
 from utilities.config import config
 
 
+# 图片处理
 class ImageProcessor:
     def __init__(
         self,

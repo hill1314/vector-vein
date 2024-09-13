@@ -6,6 +6,7 @@ from .base_llm import BaseLLMTask
 from .types.model import ModelSetting, EndpointSetting
 
 
+# 本地大模型任务
 class LocalLLMTask(BaseLLMTask):
     NAME: str = "LocalLLM"
     DEFAULT_MODEL: str = ""
